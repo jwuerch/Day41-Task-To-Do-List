@@ -114,7 +114,7 @@
             //Assert
             $this->assertEquals($test_Category, $result);
         }
-        
+
         function test_getTasks()
         {
           //arrange
@@ -126,11 +126,12 @@
           $test_category_id = $test_category->getId();
 
           $description = "Email client";
-          $test_task = new Task($description, $id, $test_category_id);
+          $due_date = '1989-03-07 00:00:00';
+          $test_task = new Task($description, $id, $test_category_id, $due_date);
           $test_task->save();
 
           $description2 = "Meet with boss";
-          $test_task2 = new Task($description2, $id, $test_category_id);
+          $test_task2 = new Task($description2, $id, $test_category_id, $due_date);
           $test_task2->save();
 
           //act
