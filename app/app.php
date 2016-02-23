@@ -28,7 +28,8 @@
 
     $app->get("categories/{id}", function($id) use ($app) {
       $category = Category::find($id);
-      return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+      $tasks = Task::getAll();
+      return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'tasks_all' => $tasks));
     });
 
     $app->post("/categories", function() use ($app) {
@@ -50,10 +51,12 @@
     $app->post("/tasks", function() use ($app) {
       $description = $_POST['description'];
       $category_id = $_POST['category_id'];
-      $task = new Task($description, $id = null, $category_id);
+      $due_date = $_POST['due_date'];
+      $task = new Task($description, $id = null, $category_id, $due_date);
       $task->save();
+      $tasks = Task::getAll();
       $category = Category::find($category_id);
-      return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+      return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'tasks_all' => $tasks));
     });
 
     return $app;

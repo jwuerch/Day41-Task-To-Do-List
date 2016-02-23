@@ -176,6 +176,31 @@
           $this->assertEquals($due_date, $result);
 
         }
+
+        function test_sort_by_date() {
+          //arrange
+          $name = "Garage stuff";
+          $id = null;
+          $test_category = new Category($name, $id);
+          $test_category->save();
+
+          $description = "Put tools away";
+          $due_date = "2016-03-25 00:00:00";
+          $category_id = $test_category->getId();
+          $test_task = new Task($description, $id, $category_id, $due_date);
+          $test_task->save();
+
+          $description2 = "Sweep Floor";
+          $due_date2 = "2016-01-25 00:00:00";
+          $category_id2 = $test_category->getId();
+          $test_task2 = new Task($description2, $id, $category_id2, $due_date2);
+          $test_task2->save();
+
+          //act
+          $result = Task::getAll();
+          //assert
+          $this->assertEquals([$test_task2, $test_task], $result);
+        }
     }
 
  ?>
