@@ -7,7 +7,7 @@
         function __construct($name, $id = null)
         {
             $this->name = $name;
-            $this->id = $id;
+            $this->id = (integer) $id;
         }
 
         function setName($new_name)
@@ -28,7 +28,7 @@
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO categories (name) VALUES ('{$this->getName()}')");
-            $this->id= $GLOBALS['DB']->lastInsertId();
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()

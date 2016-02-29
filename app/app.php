@@ -19,24 +19,31 @@
     });
 
     $app->get("/tasks", function() use ($app) {
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll(), 'categories' => Category::getAll()));
     });
 
     $app->post("/add_task", function() use ($app) {
         $description = $_POST['description'];
         $due_date = $_POST['due_date'];
+        $id = null;
         $new_task = new Task($description, $id, $due_date);
         $new_task->save();
-        $new_task->addCategory($_POST['category']);
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll(), 'categories' => Category::getAll()));
     });
 
     $app->get("/task/{id}", function($id) use ($app) {
         $task = Task::find($id);
+        $task_categories = $task->getCategories();
+        return $app['twig']->render('task.html.twig', array('task_categories' => $task_categories, 'task' => $task, 'categories' => Category::getAll()));
+    });
+
+    $app->post("/task_add_category", function() use($app) {
+        $task = Task::find($_POST['task_id']);
         $description = $task->getDescription();
         $due_date = $task->getDueDate();
         $categories = $task->getCategories();
-        return $app['twig']->render('task.html.twig', array('description' => $description, 'due_date' => $due_date, 'categories' => $categories));
+        $task->save();
+        return $app['twig']->render('task.html.twig', array('task' => $task, 'categories' => $categories));
     });
 
     $app->patch("/update_task/{id}", function($id) use ($app) {
@@ -51,7 +58,7 @@
     $app->delete("/delete_task/{id}", function($id) use ($app) {
         $task = Task::find($id);
         $task->delete();
-        return $app['twig']->render('tasks.html.twig'), array('tasks' => Task::getAll());
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
 
 

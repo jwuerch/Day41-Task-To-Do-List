@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ task.getDescription }}</title>
+    </head>
+    <body>
+        <h1> {{ task.getDescription }}</h1>
+        <h4> {{ task.getDueDate }}</h4>
+        {% if task_categories is not empty %}
+        <h5>Here are your categories:</h5>
+            <ul>
+                {% for category in categories %}
+                    <li>{{ task_categories.getName }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form action="/task_add_category" method="post">
+            <input id="task_id" = name="task_id" type="hidden" value="{{ task.getId }}">
+                <label for="category">Select a category:</label>
+                <select name="category">
+                        {% for category in categories %}
+                            <option value="{{ category.getId }}">{{ category.getName }}</option>
+                        {% endfor %}
+                </select>
+            <button type="btn btn-danger" type="submit">Add Category</button>
+        </form>
+        <p><a href="/">Home</a></p>
+
+    </body>
+</html>
