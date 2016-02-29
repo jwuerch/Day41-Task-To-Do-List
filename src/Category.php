@@ -69,7 +69,7 @@
             $GLOBALS['DB']->exec("INSERT INTO categories_tasks (category_id, task_id) VALUES ({$this->getId()}, {$task->getId()});");
         }
 
-        function tasks()
+        function getTasks()
         {
             $query = $GLOBALS['DB']->query("SELECT task_id FROM categories_tasks WHERE category_id = {$this->getId()};");
             $task_ids = $query->fetchAll(PDO::FETCH_ASSOC);

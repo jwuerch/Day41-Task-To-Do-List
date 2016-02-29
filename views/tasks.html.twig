@@ -14,16 +14,15 @@
         </ul>
     {% endif %}
 
-    <form action='/tasks' method='post'>
-        <label for='description'>Task name</label>
+    <h3>Add a task</h3>
+    <form action='/add_task' method='post'>
+        <label for='description'>Task Description:</label>
         <input id='description' name='description' type='text'>
 
-        <label for='due_date'>Due Date</label>
-        <input id='due_date' name="due_date" type="text">
-        <button type='submit'>Add Task</button>
-    </form>
-    <form action='/delete_tasks' method='post'>
-        <button type='submit'>Clear</button>
+        <label for='due_date'>Due Date:</label>
+        <input id='due_date' name="due_date" type="date">
+
+        <button type='submit'>Add task</button>
     </form>
 
     <p><a href='/'>Home</a></p>

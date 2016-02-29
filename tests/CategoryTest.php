@@ -132,10 +132,10 @@
             $test_category->addTask($test_task);
 
             // Assert
-            $this->assertEquals($test_category->tasks(), [$test_task]);
+            $this->assertEquals($test_category->getTasks(), [$test_task]);
         }
 
-        function testTasks()
+        function testGetTasks()
         {
             //Arrange;
             $name = "Home stuff";
@@ -157,7 +157,7 @@
             $test_category->addTask($test_task2);
 
             //Assert
-            $this->assertEquals($test_category->tasks(), [$test_task, $test_task2]);
+            $this->assertEquals($test_category->getTasks(), [$test_task, $test_task2]);
         }
 
         function testDelete()

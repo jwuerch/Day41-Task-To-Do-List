@@ -9,12 +9,12 @@
         <p>Here are all your categories:</p>
         <ul>
             {% for category in categories %}
-                <li>{{ category.getName }}</li>
+                <li><a href="/category/{{ category.getId }}">{{ category.getName }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
 
-    <form action='/categories' method='post'>
+    <form action='/add_category' method='post'>
         <label for='name'>Category name</label>
         <input id='name' name='name' type='text'>
 
