@@ -178,6 +178,23 @@
             // Assert
             $this->assertEquals([$test_category2], Category::getAll());
         }
+
+        function testUpdate() {
+            //Arrange;
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+            $new_name = "Home Stuff";
+
+            //Act;
+            $test_category->update($new_name);
+            $result = $test_category->getName();
+
+            //Assert;
+            $this->assertEquals($new_name, $result);
+
+        }
     }
 
 ?>

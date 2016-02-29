@@ -94,6 +94,12 @@
             $GLOBALS['DB']->exec("INSERT INTO categories_tasks (category_id, task_id) VALUES ({$category->getId()}, {$this->getId()});");
         }
 
+        public function update($new_description, $new_due_date) {
+            $GLOBALS['DB']->exec("UPDATE tasks SET description = '{$new_description}', due_date = '{$new_due_date}' WHERE id = {$this->getId()};");
+            $this->setDescription($new_description);
+            $this->setDueDate($new_due_date);
+        }
+
     }
 
  ?>

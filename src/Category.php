@@ -94,5 +94,10 @@
             $GLOBALS['DB']->exec("DELETE FROM categories WHERE id = {$this->getId()};");
             $GLOBALS['DB']->exec("DELETE FROM categories_tasks WHERE category_id = {$this->getId()};");
         }
+
+        public function update($new_name) {
+            $GLOBALS['DB']->exec("UPDATE categories SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setName($new_name);
+        }
     }
 ?>

@@ -216,6 +216,26 @@
             //Assert;
             $this->assertEquals([$test_task], Task::getAll());
         }
+
+        function testUpdate()
+        {
+            // Arrange
+            $description = "Put tools away";
+            $id = 1;
+            $due_date = "2016-03-25";
+            $test_task = new Task($description, $id, $due_date);
+            $test_task->save();
+
+            $new_description = "Sweep floor";
+            $new_due_date = "2016-03-01";
+
+            // Act
+            $test_task->update($new_description, $new_due_date);
+            $result = [$test_task->getDescription(), $test_task->getDueDate()];
+
+            // Assert
+            $this->assertEquals(["Sweep floor", "2016-03-01"], $result);
+        }
     }
 
  ?>
