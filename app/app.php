@@ -108,5 +108,11 @@
       return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'tasks_all' => $tasks));
     });
 
+    $app->post("/delete_all", function() use ($app) {
+        Task::deleteAll();
+        Category::deleteAll();
+        return $app['twig']->render('index.html.twig');
+    });
+
     return $app;
 ?>
