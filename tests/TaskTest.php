@@ -147,6 +147,54 @@
           //assert
           $this->assertEquals([$test_task2, $test_task], $result);
         }
+
+        function testGetCategories()
+        {
+            // Arrange
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $name2 = "Volunteer stuff";
+            $id = null;
+            $test_category2 = new Category($name2, $id);
+            $test_category2->save();
+
+            $description = "Reply to emails";
+            $id = null;
+            $due_date = "2016-03-01";
+            $test_task = new Task($description, $id, $due_date);
+            $test_task->save();
+
+            // Act
+            $test_task->addCategory($test_category);
+            $test_task->addCategory($test_category2);
+
+            // Assert
+            $this->assertEquals($test_task->getCategories(), [$test_category, $test_category2]);
+        }
+
+        function testAddCategory()
+        {
+            // Arrange
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $description = "Reply to emails";
+            $id = null;
+            $due_date = "2016-03-01";
+            $test_task = new Task($description, $id, $due_date);
+            $test_task->save();
+
+            // Act
+            $test_task->addCategory($test_category);
+
+            // Assert
+            $this->assertEquals($test_task->getCategories(), [$test_category]);
+        }
     }
 
  ?>
