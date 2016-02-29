@@ -17,10 +17,10 @@
     <h3>Add a task</h3>
     <form action='/add_task' method='post'>
         <label for='description'>Task Description:</label>
-        <input id='description' name='description' type='text'>
+        <input id='description' name='description' type='text' required>
 
         <label for='due_date'>Due Date:</label>
-        <input id='due_date' name="due_date" type="date">
+        <input id='due_date' name="due_date" type="date" required>
 
         <button type='submit'>Add task</button>
     </form>

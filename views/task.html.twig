@@ -6,26 +6,46 @@
     </head>
     <body>
         <h1> {{ task.getDescription }}</h1>
-        <h4> {{ task.getDueDate }}</h4>
+        <h3> {{ task.getDueDate }}</h3>
         {% if categories is not empty %}
-        <h5>Here are your categories:</h5>
+        <h4>Here are your categories:</h4>
             <ul>
                 {% for category in categories %}
-                    <li>{{ category.getName }}</li>
+                    <li><a href="/category/{{ category.getId }}">{{ category.getName }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}
 
         <form action="/task_add_category" method="post">
             <input id="task_id" = name="task_id" type="hidden" value="{{ task.getId }}">
-                <label for="category_id">Select a category:</label>
-                <select name="category_id" type="text">
+                <label for="category_id">Add this task to a category:</label>
+                <select name="category_id" type="text" required>
                         {% for category in all_categories %}
                             <option value="{{ category.getId }}">{{ category.getName }}</option>
                         {% endfor %}
                 </select>
             <button type="submit">Add Category</button>
         </form>
+
+        <h5>Edit your task here:</h5>
+        <form action="/task/{{ task.getId }}/update" method="post">
+            <input type="hidden" name="_method" value="patch">
+
+
+            <label for='new_description'>New Task Description:</label>
+            <input id='new_description' name='new_description' type='text' value="{{ task.getDescription }}" required>
+
+            <label for='new_due_date'>New Due Date:</label>
+            <input id='new_due_date' name='new_due_date' type='date' value="{{ task.getDueDate }}" required>
+
+            <button type='submit'>Update Task</button>
+        </form>
+
+        <form action="/task/{{ task.getId }}/delete" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Delete this task!</button>
+        </form>
+
         {% include 'footer.html' %}
 
     </body>

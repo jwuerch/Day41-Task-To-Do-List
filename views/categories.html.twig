@@ -15,11 +15,12 @@
     {% endif %}
 
     <form action='/add_category' method='post'>
-        <label for='name'>Category name</label>
-        <input id='name' name='name' type='text'>
+        <label for='name'>Category Name:</label>
+        <input id='name' name='name' type='text' required>
 
         <button type='submit'>Add category</button>
     </form>
+    
     <form action='/delete_categories' method='post'>
         <button type='submit'>Delete ALL Categories</button>
     </form>

@@ -9,7 +9,7 @@
         <p>Here are the tasks:</p>
         <ul>
             {% for task in tasks %}
-                <li>{{ task.getDescription }} - {{task.getDueDate}}</li>
+                <li><a href="/task/{{ task.getId }}">{{ task.getDescription }}</a> - {{task.getDueDate}}</li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -19,12 +19,28 @@
     <form action="/category_add_task" method="post">
         <input id="category_id" = name="category_id" type="hidden" value="{{ category.getId }}">
             <label for="task_id">Select a task:</label>
-            <select name="task_id" type="text">
+            <select name="task_id" type="text" required>
                     {% for task in all_tasks %}
                         <option value="{{ task.getId }}">{{ task.getDescription }}</option>
                     {% endfor %}
             </select>
         <button type="submit">Add Task</button>
+    </form>
+
+    <h3>Edit this category</h3>
+    <form action="/category/{{ category.getId }}/update" method="post">
+        <input type="hidden" name="_method" value="patch">
+
+        <label for='new_name'>New Category Name:</label>
+        <input id='new_name' name='new_name' type='text' value="{{ category.getName }}" required>
+
+        <button type="submit">Update this category</button>
+    </form>
+
+    <form action="/category/{id}/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+
+        <button type="submit">Delete this category</button>
     </form>
 
     {% include 'footer.html' %}
