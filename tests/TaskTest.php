@@ -195,6 +195,27 @@
             // Assert
             $this->assertEquals($test_task->getCategories(), [$test_category]);
         }
+
+        function testDelete() {
+            //Arrange;
+            $description = "Put tools away";
+            $id = 1;
+            $due_date = "2016-03-25";
+            $test_task = new Task($description, $id, $due_date);
+            $test_task->save();
+
+            $description2 = "Sweep Floor";
+            $id2 = 2;
+            $due_date2 = "2016-01-25";
+            $test_task2 = new Task($description2, $id2, $due_date2);
+            $test_task2->save();
+
+            //Act;
+            $test_task2->delete();
+
+            //Assert;
+            $this->assertEquals([$test_task], Task::getAll());
+        }
     }
 
  ?>
