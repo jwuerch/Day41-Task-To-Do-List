@@ -64,20 +64,20 @@
             return $found_category;
         }
 
-        function getTasks()
-        {
-          $tasks = Array();
-          $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE category_id = {$this->getId()};");
-          foreach($returned_tasks as $task) {
-            $description = $task['description'];
-            $id = $task['id'];
-            $category_id = $task['category_id'];
-            $due_date = $task['due_date'];
-            $new_task = new Task($description, $id, $category_id, $due_date);
-            array_push($tasks, $new_task);
-          }
-
-          return $tasks;
-        }
+        // function getTasks()
+        // {
+        //   $tasks = Array();
+        //   $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE category_id = {$this->getId()};");
+        //   foreach($returned_tasks as $task) {
+        //     $description = $task['description'];
+        //     $id = $task['id'];
+        //     $category_id = $task['category_id'];
+        //     $due_date = $task['due_date'];
+        //     $new_task = new Task($description, $id, $category_id, $due_date);
+        //     array_push($tasks, $new_task);
+        //   }
+        //
+        //   return $tasks;
+        // }
     }
 ?>

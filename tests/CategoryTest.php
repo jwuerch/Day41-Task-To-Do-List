@@ -115,31 +115,31 @@
             $this->assertEquals($test_Category, $result);
         }
 
-        function test_getTasks()
-        {
-          //arrange
-          $name = "work stuff";
-          $id = null;
-          $test_category = new Category($name, $id);
-          $test_category->save();
-
-          $test_category_id = $test_category->getId();
-
-          $description = "Email client";
-          $due_date = '1989-03-07 00:00:00';
-          $test_task = new Task($description, $id, $test_category_id, $due_date);
-          $test_task->save();
-
-          $description2 = "Meet with boss";
-          $test_task2 = new Task($description2, $id, $test_category_id, $due_date);
-          $test_task2->save();
-
-          //act
-          $result = $test_category->getTasks();
-
-          //assert
-          $this->assertEquals([$test_task, $test_task2], $result);
-        }
+        // function test_getTasks()
+        // {
+        //   //arrange
+        //   $name = "work stuff";
+        //   $id = null;
+        //   $test_category = new Category($name, $id);
+        //   $test_category->save();
+        //
+        //   $test_category_id = $test_category->getId();
+        //
+        //   $description = "Email client";
+        //   $due_date = '1989-03-07 00:00:00';
+        //   $test_task = new Task($description, $id, $test_category_id, $due_date);
+        //   $test_task->save();
+        //
+        //   $description2 = "Meet with boss";
+        //   $test_task2 = new Task($description2, $id, $test_category_id, $due_date);
+        //   $test_task2->save();
+        //
+        //   //act
+        //   $result = $test_category->getTasks();
+        //
+        //   //assert
+        //   $this->assertEquals([$test_task, $test_task2], $result);
+        // }
     }
 
 ?>
